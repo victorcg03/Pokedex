@@ -37,13 +37,29 @@
 body{
     background-color: var(--clr-gray);
     min-height: 100vh;
+    width: calc(100vw - 17px);
 }
 header{
     padding-block: 1rem;
     box-shadow: 0 0 2rem -1rem rgba(0,0,0, 0.25);
 }
-nav{
+header > div{
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
     padding-inline: 2rem;
+    align-items: center;
+}
+select{
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 100vmax;
+}
+option{
+    cursor: pointer !important;
+}
+nav{
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -73,10 +89,16 @@ header .tipo:hover{
     margin: 0 auto;
     padding: 2rem;
     max-width: 1000px;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 0.7fr));
     gap: 1rem;
     place-content: center;
+}
+#pokedex.verDatos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .pokemon{
     border-radius: 1rem;
