@@ -2,8 +2,7 @@ let pararTarea = false;
 window.addEventListener('load', async () => {
     const URL = "https://pokeapi.co/api/v2/";
     const data = await obtenerData(URL);
-    await crearBotonesTipos(data);
-    habilitarBotones(data);
+    crearBotonesTipos(data);
     mostrarPokemon(data);
 });
 
@@ -73,6 +72,7 @@ async function crearBotonesTipos(data) {
             document.querySelector("header nav").innerHTML += `<div data-type="${tipo.name}" class="tipo ${tipo.name}">${nombreEspanol}</div>`;
         }
     }
+    habilitarBotones(data);
 }
 
 async function imprimirPokemon(dataPokemon) {
