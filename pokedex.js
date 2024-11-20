@@ -6,6 +6,27 @@ window.addEventListener('load', async () => {
     mostrarPokemon(data);
 });
 
+async function obtenerData(URL) {
+    const response = await fetch(URL);
+    if (response.ok) {
+        const data = await response.json();
+        return data;
+    }
+    return null;
+}
+
+async function crearBotonesTipos(data) {
+    const nTipos = await obtenerData(data.type).then(data => data.count);
+    for (let i = 1; i <= nTipos; i++) {
+        const tipo = await obtenerData(`${data.type}/${i}`);
+        if (tipo) {
+            const nombreEspanol = tipo.names.find(n => n.language.name === "es").name;
+            document.querySelector("header nav").innerHTML += `<div data-type="${tipo.name}" class="tipo ${tipo.name}">${nombreEspanol}</div>`;
+        }
+    }
+    habilitarBotones(data);
+}
+
 function habilitarBotones(data) {
     document.querySelectorAll(".tipo").forEach(boton => {
         boton.addEventListener("click", async () => {
@@ -52,27 +73,6 @@ async function mostrarPokemon(data) {
         }
         pokemon = await obtenerData(pokemon.next);
     }
-}
-
-async function obtenerData(URL) {
-    const response = await fetch(URL);
-    if (response.ok) {
-        const data = await response.json();
-        return data;
-    }
-    return null;
-}
-
-async function crearBotonesTipos(data) {
-    const nTipos = await obtenerData(data.type).then(data => data.count);
-    for (let i = 1; i <= nTipos; i++) {
-        const tipo = await obtenerData(`${data.type}/${i}`);
-        if (tipo) {
-            const nombreEspanol = tipo.names.find(n => n.language.name === "es").name;
-            document.querySelector("header nav").innerHTML += `<div data-type="${tipo.name}" class="tipo ${tipo.name}">${nombreEspanol}</div>`;
-        }
-    }
-    habilitarBotones(data);
 }
 
 async function imprimirPokemon(dataPokemon) {
