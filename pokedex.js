@@ -20,8 +20,6 @@ async function crearBotonesIdiomas(data) {
     idiomas.forEach(async idio =>{
         let idiomaData = await obtenerData(idio.url);
         let nombreIdioma = idiomaData.names.find(id => id.language.name == idiomaData.name);
-        console.log(idiomaData);
-        console.log(nombreIdioma ? nombreIdioma.name : idiomaData.name);
         
         
         let option = document.createElement("option");
@@ -40,7 +38,7 @@ async function crearBotonesIdiomas(data) {
             idioma = select.value;
             document.querySelector(".activo").click();
             await crearBotonesTipos(data);
-        }, 400);
+        }, 500);
     });
     
 }
@@ -57,7 +55,7 @@ async function crearBotonesTipos(data) {
     document.querySelector("header nav").innerHTML = `<div class="tipo activo" data-type="todos">${text}</div>`;
 
     for (let i = 1; i <= nTipos; i++) {
-        const tipo = await obtenerData(`${data.type}/${i}`);
+        const tipo = await obtenerData(`${data.type}${i}`);
         if (tipo) {
             const nombre = tipo.names.find(n => n.language.name === idioma)?.name || tipo.name; // Valor predeterminado si no hay datos
             document.querySelector("header nav").innerHTML += `<div data-type="${tipo.name}" class="tipo ${tipo.name}">${nombre}</div>`;
@@ -90,7 +88,7 @@ function habilitarBotones(data) {
                 } else {
                     mostrarPokemon(data);
                 }
-            }, 100);
+            }, 500);
         });
     });
 }
