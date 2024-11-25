@@ -111,6 +111,18 @@ header .tipo:hover{
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.pokemon:hover{
+    transform: scale(1.02) translateY(-1.5%);
+}
+.pokemon:hover img, .pokemon:hover .pokemon-id-bg > p{
+    transform: scale(1.15);
+    transition: transform 0.3s;
+}
+.pokemon-id-bg > p{
+    transition: 0.3s;
 }
 .pokemon-id-bg{
     position: absolute;
@@ -131,6 +143,7 @@ header .tipo:hover{
 }
 img{
     width: 100%;
+    transition: transform 0.3s;
 }
 .datos-pokemon{
     display: flex;

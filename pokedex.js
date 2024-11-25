@@ -3,9 +3,9 @@ let idioma = "es";
 window.addEventListener('load', async () => {
     const URL = "https://pokeapi.co/api/v2/";
     const data = await obtenerData(URL);
+    await mostrarPokemon(data);    
     crearBotonesTipos(data);
     crearBotonesIdiomas(data);
-    await mostrarPokemon(data);    
 });
 async function obtenerData(URL) {
     const response = await fetch(URL);
